@@ -126,7 +126,7 @@ class BOOKING
                 }
             }while(p != 0);
 
-            cout << "Nhap ngay khoi hanh( DD/MM/YYYY ) :- ";
+            cout << "Nhap ngay khoi hanh( DD/MM/YYYY ) : ";
             cin >> date;
         }
 
@@ -142,7 +142,7 @@ int main()
 {
 start :
     cout << "*********************************************************************\n";
-    cout <<"..............Chao Mung Den Voi Dich Vu NTU Airline ............\n";
+    cout <<"..............<<< Chao Mung Den Voi Dich Vu NTU Airline >>>............\n";
     cout << "*********************************************************************\n";
     int k = 0;
     int choice;
@@ -154,7 +154,7 @@ start :
         cout << "\t3. Tim kiem chuyen bay\t\t4. Sua doi thong tin chuyen bay\n";
         cout << "\t5. Huy bo chuyen bay\t\t6. Thong tin hanh khach\n";
 
-        cout << "Vui long nhap lua chon cua ban : ";
+        cout << "Vui long nhap lua chon cua ban: ";
         cin >> choice;
         if(choice<1 || choice >6)
         {
@@ -170,7 +170,7 @@ start :
                 fstream f1;
                 char ch;
                 int book_id = 1;
-                f1.open("booking.dat",ios::in|ios::out|ios::app|ios::binary);
+                f1.open("booking.txt",ios::in|ios::out|ios::app|ios::binary);
                 cout << "\t\tChao mung den voi dich vu dat ve\n";
                 cout << "\t\t---------------------------\n";
 
@@ -185,14 +185,14 @@ start :
                     cout <<setw(15)<<"Ho va Ten"<<setw(12)<<"Ngay di"<<setw(20)<<"Dia chi"<<setw(15)<<"SDT"<<setw(30)<<"Email"<<setw(12)<<"Noi den"<<setw(12)<<"Noi di"<<endl;
                     cout <<setw(15)<<"----"<<setw(12)<<"----"<<setw(20)<<"-------"<<setw(15)<<"------"<<setw(30)<<"-----"<<setw(12)<<"-------"<<setw(12)<<"-------"<<endl;
                     b.disInfo();
-                    cout << "\nQuy khach co muon dang ki lai ?\n";
+                    cout << "\nQuy khach co muon dang ki lai?\n";
                     cout << "(Y la co,N la khong)";
                     cin >> ch;
                 }while (ch == 'Y'|| ch == 'y');
                 cout << "\n\t..........Dat Chuyen Bay Thanh Cong...............\n";
 
                 char c1;
-                cout << "\tNhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh :- ";
+                cout << "\tNhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh : ";
                 cin >>c1;
                 if(c1 == 'q' || c1 == 'Q')
                     exit(EXIT_FAILURE);
