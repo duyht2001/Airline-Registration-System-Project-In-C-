@@ -11,7 +11,8 @@ void mainMenu();
 class BOOKING
 {
     public :
-        char name[20];
+        char ID[20];
+		char name[20];
         char add[50];
         char email[50];
         long mobile;
@@ -23,6 +24,9 @@ class BOOKING
     public :
         int getInfo()
         {
+        	cout << "Nhap IDname: ";
+            cin.getline(ID,5);
+            
             cout << "Nhap ho va ten: ";
             cin.get();
             cin.getline(name,20);
@@ -133,7 +137,7 @@ class BOOKING
         int disInfo()
         {
             cout.setf(ios::left);
-            cout <<setw(15)<< name <<setw(12)<< date <<setw(20)<< add <<setw(15)<< mobile <<setw(30)<<email<<setw(12)<< departure <<setw(12)<< arrival<<endl;
+            cout <<setw(15)<< ID <<setw(15)<< name <<setw(12)<< date <<setw(20)<< add <<setw(15)<< mobile <<setw(30)<<email<<setw(12)<< departure <<setw(12)<< arrival<<endl;
         }
 
 };
@@ -182,8 +186,8 @@ start :
                     cout << "\n\t\tChi tiet dat ve\n";
                     cout << "\t\t-----------------------------\n";
                     cout.setf(ios::left);
-                    cout <<setw(15)<<"Ho va Ten"<<setw(12)<<"Ngay di"<<setw(20)<<"Dia chi"<<setw(15)<<"SDT"<<setw(30)<<"Email"<<setw(12)<<"Noi den"<<setw(12)<<"Noi di"<<endl;
-                    cout <<setw(15)<<"----"<<setw(12)<<"----"<<setw(20)<<"-------"<<setw(15)<<"------"<<setw(30)<<"-----"<<setw(12)<<"-------"<<setw(12)<<"-------"<<endl;
+                    cout <<setw(15)<<"ID"<<setw(15)<<"Ho va Ten"<<setw(12)<<"Ngay di"<<setw(20)<<"Dia chi"<<setw(15)<<"SDT"<<setw(30)<<"Email"<<setw(12)<<"Noi den"<<setw(12)<<"Noi di"<<endl;
+                    cout <<setw(15)<<"----"<<setw(15)<<"----"<<setw(12)<<"----"<<setw(20)<<"-------"<<setw(15)<<"------"<<setw(30)<<"-----"<<setw(12)<<"-------"<<setw(12)<<"-------"<<endl;
                     b.disInfo();
                     cout << "\nQuy khach co muon dang ki lai?\n";
                     cout << "(Y la co,N la khong)";
@@ -192,7 +196,7 @@ start :
                 cout << "\n\t..........Dat Chuyen Bay Thanh Cong...............\n";
 
                 char c1;
-                cout << "\tNhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh : ";
+                cout << "\tNhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh: ";
                 cin >>c1;
                 if(c1 == 'q' || c1 == 'Q')
                     exit(EXIT_FAILURE);
@@ -201,7 +205,170 @@ start :
                 f1.close();
             }
             break;
-	
+		case 3:
+            {
+                BOOKING s;
+                int choice;
+                fstream f3;
+                char sName[20];
+                char sEmail[20];
+                long sMobile;
+                char sID[20];
+                f3.open("booking.txt",ios::in|ios::out|ios::binary);
+                cout << "\tChon tieu chi de Tim Kiem\n";
+                cout <<"\t1. Theo Ten\n\t2. Theo Email\n";
+                cout <<"\t3. Theo ID(Khuyen nghi)\n\t4. Theo SDT\n";
+
+                cout << "Vui long nhap lua chon cua ban: ";
+                cin >> choice;
+
+                switch (choice)
+                {
+                    case 1:
+                        {
+
+                            int flag = 0;
+                            cout << "Nhap ten ma ban muon tim kiem: ";
+                            cin >> sName;
+                            f3.seekg(0,ios::beg);
+                            f3.read((char *)&s,sizeof(s));
+                            cout.setf(ios::left);
+                            cout <<setw(15)<<"ID"<<setw(15)<<"Ho va Ten"<<setw(12)<<"Ngay di"<<setw(20)<<"Dia chi"<<setw(15)<<"SDT"<<setw(30)<<"Email"<<setw(12)<<"Noi den"<<setw(12)<<"Noi di"<<endl;
+                    		cout <<setw(15)<<"----"<<setw(15)<<"----"<<setw(12)<<"----"<<setw(20)<<"-------"<<setw(15)<<"------"<<setw(30)<<"-----"<<setw(12)<<"-------"<<setw(12)<<"-------"<<endl;
+                            while (f3.eof() != 1)
+                            {
+                                if (strcmp(sName,s.name) == 0)
+                                {
+                                    s.disInfo();
+                                    flag = 1;
+                                }
+                               f3.read((char *)&s,sizeof(s));
+                            }
+
+                            if (flag == 0)
+                            cout << "\t!!!!!!Khong tim thay ket qua!!!!!!!!\n";
+                            f3.close();
+
+                            char c3_1;
+                            cout << "\tNhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh:\n";
+                            cin >> c3_1;
+
+                            if(c3_1 == 'q'|| c3_1 == 'Q')
+                                exit(EXIT_FAILURE);
+                            else
+                                goto start;
+                        }
+                        break;
+
+                    case 2:
+                        {
+                            int flag = 0;
+                            cout << "Nhap Email ma ban muon tim kiem:- ";
+                            cin >> sEmail;
+
+                            f3.seekg(0,ios::beg);
+                            f3.read((char *)&s,sizeof(s));
+
+                            cout.setf(ios::left);
+                            cout <<setw(15)<<"ID"<<setw(15)<<"Ho va Ten"<<setw(12)<<"Ngay di"<<setw(20)<<"Dia chi"<<setw(15)<<"SDT"<<setw(30)<<"Email"<<setw(12)<<"Noi den"<<setw(12)<<"Noi di"<<endl;
+                    		cout <<setw(15)<<"----"<<setw(15)<<"----"<<setw(12)<<"----"<<setw(20)<<"-------"<<setw(15)<<"------"<<setw(30)<<"-----"<<setw(12)<<"-------"<<setw(12)<<"-------"<<endl;
+                            while (f3.eof() != 1)
+                            {
+                                if (strcmp(sEmail,s.email) == 0)
+                                {
+                                    s.disInfo();
+                                    flag = 1;
+                                }
+                               f3.read((char *)&s,sizeof(s));
+                            }
+
+                            if(flag == 0)
+                                cout << "\t\tKhong tim thay ket qua!!\n";
+
+                            char c3_2;
+                            cout << "\tNhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh:\n";
+                            cin >> c3_2;
+
+                            if(c3_2 == 'q' || c3_2 == 'Q')
+                               exit (EXIT_FAILURE);
+                            else
+                                goto start;
+                        }
+                        break;
+
+                    case 3:
+                        {
+                            int flag = 0;
+                            cout << "Nhap ID ma ban muon tim kiem: ";
+                            cin >> sID;
+
+                            f3.seekg(0,ios::beg);
+                            f3.read((char*)&s,sizeof(s));
+
+                            cout.setf(ios::left);
+                            cout <<setw(15)<<"ID"<<setw(15)<<"Ho va Ten"<<setw(12)<<"Ngay di"<<setw(20)<<"Dia chi"<<setw(15)<<"SDT"<<setw(30)<<"Email"<<setw(12)<<"Noi den"<<setw(12)<<"Noi di"<<endl;
+                    		cout <<setw(15)<<"----"<<setw(15)<<"----"<<setw(12)<<"----"<<setw(20)<<"-------"<<setw(15)<<"------"<<setw(30)<<"-----"<<setw(12)<<"-------"<<setw(12)<<"-------"<<endl;
+
+                            while (f3.eof() != 1)
+                            {
+                                if(sID == s.ID)
+                                {
+                                    s.disInfo();
+                                    flag = 1;
+                                }
+                            }
+
+                            if(flag == 0)
+                                cout << "\t\tKhong co ket qua!!!!\n";
+
+                            char c3_3;
+                            cout << "\tPNhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh:\n";
+                            cin >> c3_3;
+
+                            if(c3_3 == 'q' || c3_3 == 'Q')
+                                exit(EXIT_FAILURE);
+                            else
+                                goto start;
+                        }
+                        break;
+
+                    case 4:
+                        {
+                            int flag = 0;
+                            cout << "Nhap SDT ma ban muon tim kiem: ";
+                            cin >> sMobile;
+
+                            f3.seekg(0,ios::beg);
+                            f3.read((char *)&s,sizeof(s));
+
+                            cout.setf(ios::left);
+                            cout <<setw(15)<<"ID"<<setw(15)<<"Ho va Ten"<<setw(12)<<"Ngay di"<<setw(20)<<"Dia chi"<<setw(15)<<"SDT"<<setw(30)<<"Email"<<setw(12)<<"Noi den"<<setw(12)<<"Noi di"<<endl;
+                    		cout <<setw(15)<<"----"<<setw(15)<<"----"<<setw(12)<<"----"<<setw(20)<<"-------"<<setw(15)<<"------"<<setw(30)<<"-----"<<setw(12)<<"-------"<<setw(12)<<"-------"<<endl;
+                            while (f3.eof() != 0)
+                            {
+                                if (sMobile,s.mobile)
+                                {
+                                    s.disInfo();
+                                    flag = 1;
+                                }
+                            }
+
+                            if(flag == 0)
+                                cout << "\tKhong tim thay ket qua!!!!!!!!\n";
+
+                            char c3_4;
+                            cout << "\tNhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh:\n";
+                            cin >> c3_4;
+
+                            if(c3_4 == 'q' || c3_4 == 'Q')
+                                exit(EXIT_FAILURE);
+                            else
+                                goto start;
+                        }
+                }
+
+            }
+            break;
 }
 }
 
