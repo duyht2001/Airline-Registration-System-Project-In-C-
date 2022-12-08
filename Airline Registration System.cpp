@@ -21,8 +21,7 @@ class BOOKING
     public :
         int getInfo()
         {
-        	
-            
+        
             cout << "Nhap ho va ten: ";
             cin.get();
             cin.getline(name,20);
@@ -143,10 +142,20 @@ class BOOKING
 
 int main()
 {
-	
-	
-	
-start :
+	string userName;
+    string userPassword;
+    int loginAttempt = 0;
+
+    while (loginAttempt < 5)
+    {
+        cout << "user name: ";
+        cin >> userName;
+        cout << "user password: ";
+        cin >> userPassword;
+        if (userName == "admin" && userPassword == "admin")
+        {
+            cout << "Welcome Admin!\n";
+            start :
     cout << "*****************************************************************\n";
     cout << "............<<< Chao Mung Den Voi Dich Vu NTU Airline >>>........\n";
     cout << "\n";
@@ -403,6 +412,13 @@ start :
             }
             break;
 }
+        }
+        else
+        {
+            cout << "Invalid login attempt. Please try again.\n" << '\n';
+            loginAttempt++;
+        }
+    }
 }
 
 
