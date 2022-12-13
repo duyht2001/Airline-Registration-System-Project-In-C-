@@ -292,7 +292,7 @@ int main()
                             f3.close();
 
                             char c3_1;
-                            cout << "\tNhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh:\n";
+                            cout << "Nhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh:\n";
                             cin >> c3_1;
 
                             if(c3_1 == 'q'|| c3_1 == 'Q')
@@ -328,7 +328,7 @@ int main()
                                 cout << "\t\tKhong tim thay ket qua!!\n";
 
                             char c3_2;
-                            cout << "\tNhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh:\n";
+                            cout << "Nhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh:\n";
                             cin >> c3_2;
 
                             if(c3_2 == 'q' || c3_2 == 'Q')
@@ -364,7 +364,7 @@ int main()
                                 cout << "\t\tKhong co ket qua!!!!\n";
 
                             char c3_3;
-                            cout << "\tPNhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh:\n";
+                            cout << "Nhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh:\n";
                             cin >> c3_3;
 
                             if(c3_3 == 'q' || c3_3 == 'Q')
@@ -399,7 +399,7 @@ int main()
                                 cout << "\tKhong tim thay ket qua!!!!!!!!\n";
 
                             char c3_4;
-                            cout << "\tNhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh:\n";
+                            cout << "Nhan 'q' de ket thuc hoac bat ki phim nao khac de quay lai Man hinh chinh:\n";
                             cin >> c3_4;
 
                             if(c3_4 == 'q' || c3_4 == 'Q')
