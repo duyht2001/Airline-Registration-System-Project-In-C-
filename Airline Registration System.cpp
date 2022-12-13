@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
-
+#include <stdio.h>
+#include <conio.h>
 
 using namespace std;
 
@@ -151,10 +152,16 @@ int main()
         cout << "user name: ";
         cin >> userName;
         cout << "user password: ";
-        cin >> userPassword;
+        char tmp;
+        while((tmp = getch()) != 13)
+        {
+        	userPassword += tmp;
+        	printf("*");
+		}
+        cout <<endl;
         if (userName == "admin" && userPassword == "admin")
         {
-            cout << "Welcome Admin!\n";
+            cout << "\t\t\tWelcome Admin!\n";
             start :
     cout << "*****************************************************************\n";
     cout << "............<<< Chao Mung Den Voi Dich Vu NTU Airline >>>........\n";
