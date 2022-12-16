@@ -45,15 +45,39 @@ void add_kh(node &a, customer x)
     }
 }
 
+void xoa_kh(char id[], node &a)
+{
+    node tmp = a, pre = NULL;
+    while(tmp != NULL)
+    {
+        if(strcmp(tmp->data.ID, id) == 0)
+        {
+            if(tmp = a)
+            {
+                a = tmp->next;
+                tmp->next = NULL;
+            }else
+            {
+                pre->next = tmp->next;
+                tmp->next = NULL;
+            }
+        }
+        pre = tmp;
+        tmp = tmp->next;
+    }
+}
+
 void prin(node a)
 {
+    ofstream file1("out.txt");
     node tmp = a;
     while(tmp != NULL) {
-        cout << tmp->data.ID << '\t' << tmp->data.name << '\t' << tmp->data.age << '\t' << tmp->data.add << '\t' << tmp->data.arrival<< '\t' << tmp->data.departure << '\t'<< tmp->data.sex
-        << '\t' << tmp->data.date<< '\t' << tmp->data.email<< '\t' << tmp->data.mobile;
+        file1 << tmp->data.ID << '\t' << tmp->data.name << '\t' << tmp->data.age << '\t' << tmp->data.add << '\t' << tmp->data.arrival<< '\t' << tmp->data.departure << '\t'<< tmp->data.sex
+        << '\t' << tmp->data.date<< '\t' << tmp->data.email<< '\t' << tmp->data.mobile << '\n';
         tmp = tmp -> next;
     }
-    cout << endl;
+    file1 << endl;
+    file1.close();
 }
 node cus_list = NULL;
 class BOOKING
@@ -176,7 +200,7 @@ class BOOKING
 		cin >> date;
 	}
     customer x;
-	int disInfo()
+	void disInfo()
 	{
 
 		cout.setf(ios::left);
@@ -191,8 +215,20 @@ class BOOKING
         x.mobile = mobile;
         strcpy(x.name , name);
         x.sex = sex;
+        add_kh(cus_list, x);
 	}
 };
+
+void Thongtin()
+{
+    prin(cus_list);
+}
+void Xoa()
+{
+    cout << "Nhap ID can xoa:";
+    char c[20]; cin >> c;
+    xoa_kh(c, cus_list);
+}
 
 void DangKi();
 void TimKiem();
@@ -240,58 +276,72 @@ int main()
 		case 3:
 			TimKiem();
 			break;
+        case 2:
+            Thongtin();
+            break;
+        case 5:
+            Xoa();
+            break;
 		case 7:
-			{
-				exit(EXIT_FAILURE);
-			}
+            exit(EXIT_FAILURE);
+
 	}
 }
 
 void DangKi()
 {
 
-	BOOKING b;
-	char ch;
-	int book_id = 1;
+    BOOKING b;
+    char ch;
+    int book_id = 1;
 
-	cout << endl;
-	cout << "-----------Chao mung den voi dich vu dat ve------------------\n";
-	cout << endl;
-	cout << "---111--------111-----1111111111111111111-----1111-------1111\n";
-	cout << "---111-11-----111-------------1111------------1111-------1111\n";
-	cout << "---111--11----111-------------1111------------1111-------1111\n";
-	cout << "---111---11---111-------------1111------------1111-------1111\n";
-	cout << "---111----11--111-------------1111------------1111-------1111\n";
-	cout << "---111----11--111-------------1111------------1111-------1111\n";
-	cout << "---111-----11-111-------------1111------------1111-------1111\n";
-	cout << "---111--------111-------------1111------------111111111111111\n";
-	cout << "-------------------------------------------------------------\n";
+    cout << endl;
+    cout << "-----------Chao mung den voi dich vu dat ve------------------\n";
+    cout << endl;
+    cout << "---111--------111-----1111111111111111111-----1111-------1111\n";
+    cout << "---111-11-----111-------------1111------------1111-------1111\n";
+    cout << "---111--11----111-------------1111------------1111-------1111\n";
+    cout << "---111---11---111-------------1111------------1111-------1111\n";
+    cout << "---111----11--111-------------1111------------1111-------1111\n";
+    cout << "---111----11--111-------------1111------------1111-------1111\n";
+    cout << "---111-----11-111-------------1111------------1111-------1111\n";
+    cout << "---111--------111-------------1111------------111111111111111\n";
+    cout << "-------------------------------------------------------------\n";
 
-	do {
-		b.getInfo();
+    do
+    {
+        b.getInfo();
 
-		cout << "\n\t\tChi tiet dat ve\n";
-		cout << "\t\t-----------------------------\n";
-		cout.setf(ios::left);
-		cout << setw(15) << "ID" << setw(15) << "Ho va Ten" << setw(12) << "Ngay di" << setw(20) << "Dia chi" << setw(15) << "SDT" << setw(30) << "Email" << setw(12) << "Noi den" << setw(12) << "Noi di" << endl;
-		cout << setw(15) << "----" << setw(15) << "----" << setw(12) << "----" << setw(20) << "-------" << setw(15) << "------" << setw(30) << "-----" << setw(12) << "-------" << setw(12) << "-------" << endl;
-		b.disInfo();
+        cout << "\n\t\tChi tiet dat ve\n";
+        cout << "\t\t-----------------------------\n";
+        cout.setf(ios::left);
+        cout << setw(15) << "ID" << setw(15) << "Ho va Ten" << setw(12) << "Ngay di" << setw(20) << "Dia chi" << setw(15) << "SDT" << setw(30) << "Email" << setw(12) << "Noi den" << setw(12) << "Noi di" << endl;
+        cout << setw(15) << "----" << setw(15) << "----" << setw(12) << "----" << setw(20) << "-------" << setw(15) << "------" << setw(30) << "-----" << setw(12) << "-------" << setw(12) << "-------" << endl;
+        b.disInfo();
 
-		cout << "\nQuy khach co muon dang ki lai?\n";
-		cout << "(Y la co,N la khong): ";
-		cin >> ch;
-	} while (ch == 'Y' || ch == 'y');
-	cout << "\n\t..........Dat Chuyen Bay Thanh Cong...............\n";
+        cout << "\nQuy khach co muon dang ki lai?\n";
+        cout << "(Y la co,N la khong): ";
+        cin >> ch;
+    }
+    while (ch == 'Y' || ch == 'y');
+    cout << "\n\t..........Dat Chuyen Bay Thanh Cong...............\n";
 
-	char c1;
-	cout << "\tNhan 'q' de ket thuc, nhan 'm' quay ve menu chinh ";
-	cin >> c1;
-	if (c1 == 'q' || c1 == 'Q')
-		exit(EXIT_FAILURE);
-	else if (c1 == 'm' || c1 == 'M')
-	{
-		main();
-	}
+    char c1;
+    cout << "\tNhan 'q' de ket thuc, nhan 'm' quay ve menu chinh, nhan 'd' de xoa ve";
+    cin >> c1;
+    if (c1 == 'q' || c1 == 'Q')
+        exit(EXIT_FAILURE);
+    else if (c1 == 'm' || c1 == 'M')
+    {
+        main();
+    }
+    else if(c1 == 'D' || c1 == 'd')
+    {
+        cout << "Nhap ID can xoa:";
+        char tmp[20];
+        cin.getline(tmp, 20);
+        xoa_kh(tmp, cus_list);
+    }
 }
 
 void TimKiem()
@@ -349,7 +399,7 @@ void TimKiem()
 				f3.close();
 
 				char c3_1;
-				cout << "Nhan 'q' de quay lai Menu Tim Kiem nhan 'm' de quay lai Menu Chinh\n";
+				cout << "Nhan 'q' de quay lai Menu Tim Kiem\nNhan 'm' de quay lai Menu Chinh\n";
 				cin >> c3_1;
 
 				if (c3_1 == 'q' || c3_1 == 'Q')
