@@ -4,3 +4,7 @@
 
 ## Sinh Viên Thực Hiện: Hoàng Thái Duy
 ## MSSV: 61133538
+
+#---------------------------------
+User: admin
+Pass: admin
